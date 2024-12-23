@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:00:44 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/23 20:35:50 by lumugot          ###   ########.fr       */
+/*   Updated: 2024/12/23 20:56:23 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define MAX_ITER 75
 # define SPACE 32
 # define ESC 65307
+# define INCREASE_RENDER 65365
+# define DECREASE_RENDER 65366
 # define BLACK 0x000000
 
 // COLOR SET //

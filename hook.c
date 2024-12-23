@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:24:12 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/23 20:46:51 by lumugot          ###   ########.fr       */
+/*   Updated: 2024/12/23 20:56:37 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ int	handle_view_and_color_change(int k, t_fractol *data)
 
 int	handle_iteration_change(int kcode, t_fractol *fractol)
 {
-	if (kcode == 65365)
+	if (kcode == INCREASE_RENDER)
 	{
 		if (fractol->max_iter < 500)
 			fractol->max_iter += 10;
 	}
-	else if (kcode == 65366)
+	else if (kcode == DECREASE_RENDER)
 	{
 		if (fractol->max_iter > 10)
 			fractol->max_iter -= 10;
