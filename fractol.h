@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:00:44 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/23 19:08:56 by lumugot          ###   ########.fr       */
+/*   Updated: 2024/12/23 20:35:50 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 
 // COLOR SET //
 
-#define PALETTE_1_START  0x00003366
-#define PALETTE_1_END    0x00CCFFCC
+# define PALETTE_1_START  0x00003366
+# define PALETTE_1_END    0x00CCFFCC
 
 # define PALETTE_2_START  0xFF0000
 # define PALETTE_2_END    0x00FF00
@@ -48,7 +48,7 @@
 
 ////////////////////////
 
-typedef struct	s_fractol
+typedef struct s_fractol
 {
 	void	*mlx;
 	void	*mlx_win;
@@ -61,33 +61,33 @@ typedef struct	s_fractol
 	int		height;
 	int		max_iter;
 	int		current_color;
-	double	min_image;
-	double	max_image;
-	double	min_real;
-	double	max_real;
+	double	min_i;
+	double	max_i;
+	double	min_r;
+	double	max_r;
 }	t_fractol;
 
 typedef struct s_complex
 {
-	double	image;
-	double	real;
+	double	i;
+	double	r;
 }	t_complex;
 
 void	init_fractal(t_fractol *fractol);
 int		handle_input(int keycode, t_fractol *fractol);
-int 	handle_view_and_color_change(int keycode, t_fractol *fractol);
+int		handle_view_and_color_change(int keycode, t_fractol *fractol);
 int		init_window(t_fractol *fractol);
 void	put_pixel(t_fractol *data, int x, int y, int color);
 int		set_mandelbrot(t_complex z, t_fractol *fractol);
 void	draw_mandelbrot(t_fractol *fractol);
-int		inter_color(int	color1, int color2, double ratio);
+int		inter_color(int color1, int color2, double ratio);
 int		get_color(int iter, int max_iter, t_fractol *fractol);
 int		key_hook(int keycode, t_fractol *fractol);
 int		handle_iteration_change(int keycode, t_fractol *fractol);
-void move_view_in_direction(t_fractol *fractol, double move_real, double move_image, int keycode);
-void    moove_view(int keycode, t_fractol *fractol);
-int 	destroy_fractal(t_fractol *fractol);
-int 	handle_mouse(int button, int x, int y, t_fractol *fractol);
-void 	zoom(int x, int y, t_fractol *fractol, double zoom_factor);
+void	move_view_in_direction(t_fractol *pos, double m_r, double m_i, int k);
+void	moove_view(int keycode, t_fractol *fractol);
+int		destroy_fractal(t_fractol *fractol);
+int		handle_mouse(int button, int x, int y, t_fractol *fractol);
+void	zoom(int x, int y, t_fractol *fractol, double zoom_factor);
 
 #endif

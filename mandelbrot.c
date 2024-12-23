@@ -6,53 +6,54 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:42:38 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/23 18:47:19 by lumugot          ###   ########.fr       */
+/*   Updated: 2024/12/23 20:37:49 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int set_mandelbrot(t_complex z, t_fractol *fractol)
+int	set_mandelbrot(t_complex z, t_fractol *fractol)
 {
-    int         iter;
-    t_complex   c;
-    t_complex   temp;
+	int			iter;
+	t_complex	c;
+	t_complex	temp;
 
-    c = z;  // C'est une copie de la position du pixel
-    iter = 0;
-    while (iter < fractol->max_iter)  // Utilisation de max_iter
-    {
-        if ((z.real * z.real + z.image * z.image) > 4)  // Condition de divergence
-            break;
-        temp.real = z.real * z.real - z.image * z.image + c.real;
-        temp.image = 2 * z.real * z.image + c.image;
-        z.real = temp.real;
-        z.image = temp.image;
-        iter++;
-    }
-    return (iter);
+	c = z;
+	iter = 0;
+	while (iter < fractol->max_iter)
+	{
+		if ((z.r * z.r + z.i * z.i) > 4)
+			break ;
+		temp.r = z.r * z.r - z.i * z.i + c.r;
+		temp.i = 2 * z.r * z.i + c.i;
+		z.r = temp.r;
+		z.i = temp.i;
+		iter++;
+	}
+	return (iter);
 }
 
-
-void draw_mandelbrot(t_fractol *fractol)
+void	draw_mandelbrot(t_fractol *data)
 {
-    int         x, y, iter;
-    t_complex   z;
+	int			x;
+	int			y;
+	int			iter;
+	int			color;
+	t_complex	z;
 
-    y = 0;
-    while (y < fractol->height)
-    {
-        x = 0;
-        while (x < fractol->width)
-        {
-            z.real = fractol->min_real + x * (fractol->max_real - fractol->min_real) / fractol->width;
-            z.image = fractol->min_image + y * (fractol->max_image - fractol->min_image) / fractol->height;
-            iter = set_mandelbrot(z, fractol);  // On passe maintenant fractol comme argument
-            int color = get_color(iter, fractol->max_iter, fractol);  // Utilisation de max_iter ici aussi
-            put_pixel(fractol, x, y, color);  // Affichage du pixel
-            x++;
-        }
-        y++;
-    }
+	y = 0;
+	while (y < data->height)
+	{
+		x = 0;
+		while (x < data->width)
+		{
+			z.r = data->min_r + x * (data->max_r - data->min_r) / data->width;
+			z.i = data->min_i + y * (data->max_i - data->min_i) / data->height;
+			iter = set_mandelbrot(z, data);
+			color = get_color(iter, data->max_iter, data);
+			put_pixel(data, x, y, color);
+			x++;
+		}
+		y++;
+	}
 }
-

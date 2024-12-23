@@ -6,89 +6,85 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:24:12 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/23 19:44:49 by lumugot          ###   ########.fr       */
+/*   Updated: 2024/12/23 20:46:51 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int key_hook(int keycode, t_fractol *fractol)
+int	key_hook(int keycode, t_fractol *fractol)
 {
-    if (keycode == SPACE)
+	if (keycode == SPACE)
 	{
-        fractol->current_color++;
-        if (fractol->current_color > 3)
-            fractol->current_color = 1;
-    }
-    return (0);
+		fractol->current_color++;
+		if (fractol->current_color > 3)
+			fractol->current_color = 1;
+	}
+	return (0);
 }
 
-void move_view_in_direction(t_fractol *fractol, double move_real, double move_image, int keycode)
+void	move_view_in_direction(t_fractol *pos, double m_r, double m_i, int k)
 {
-    if (keycode == ARROW_LEFT)
-    {
-        fractol->min_real -= move_real;
-        fractol->max_real -= move_real;
-    }
-    else if (keycode == ARROW_RIGHT)
-    {
-        fractol->min_real += move_real;
-        fractol->max_real += move_real;
-    }
-    else if (keycode == ARROW_UP)
-    {
-        fractol->min_image -= move_image;
-        fractol->max_image -= move_image;
-    }
-    else if (keycode == ARROW_DOWN)
-    {
-        fractol->min_image += move_image;
-        fractol->max_image += move_image;
-    }
+	if (k == ARROW_LEFT)
+	{
+		pos->min_r -= m_r;
+		pos->max_r -= m_r;
+	}
+	else if (k == ARROW_RIGHT)
+	{
+		pos->min_r += m_r;
+		pos->max_r += m_r;
+	}
+	else if (k == ARROW_UP)
+	{
+		pos->min_i -= m_i;
+		pos->max_i -= m_i;
+	}
+	else if (k == ARROW_DOWN)
+	{
+		pos->min_i += m_i;
+		pos->max_i += m_i;
+	}
 }
 
-void moove_view(int keycode, t_fractol *fractol)
+void	moove_view(int kcode, t_fractol *fractol)
 {
-    double move_real = (fractol->max_real - fractol->min_real) * 0.05;
-    double move_image = (fractol->max_image - fractol->min_image) * 0.05;
+	double	m_r;
+	double	m_i;
 
-    move_view_in_direction(fractol, move_real, move_image, keycode);
-    draw_mandelbrot(fractol);
-    mlx_put_image_to_window(fractol->mlx, fractol->mlx_win, fractol->img, 0, 0);
+	m_r = (fractol->max_r - fractol->min_r) * 0.05;
+	m_i = (fractol->max_i - fractol->min_i) * 0.05;
+	move_view_in_direction(fractol, m_r, m_i, kcode);
+	draw_mandelbrot(fractol);
+	mlx_put_image_to_window(fractol->mlx, fractol->mlx_win, fractol->img, 0, 0);
 }
 
-
-int handle_view_and_color_change(int keycode, t_fractol *fractol)
+int	handle_view_and_color_change(int k, t_fractol *data)
 {
-    if (keycode == SPACE)
-    {
-        fractol->current_color++;
-        if (fractol->current_color > 3)
-            fractol->current_color = 1;
-        draw_mandelbrot(fractol);
-        mlx_put_image_to_window(fractol->mlx, fractol->mlx_win, fractol->img, 0, 0);
-    }
-    if (keycode == ARROW_LEFT || keycode == ARROW_RIGHT || keycode == ARROW_UP || keycode == ARROW_DOWN)
-        moove_view(keycode, fractol);
-
-    return 0;
+	if (k == SPACE)
+	{
+		data->current_color++;
+		if (data->current_color > 3)
+			data->current_color = 1;
+		draw_mandelbrot(data);
+		mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	}
+	if (k == ARROW_LEFT || k == ARROW_RIGHT || k == ARROW_UP || k == ARROW_DOWN)
+		moove_view(k, data);
+	return (0);
 }
 
-int handle_iteration_change(int keycode, t_fractol *fractol)
+int	handle_iteration_change(int kcode, t_fractol *fractol)
 {
-    if (keycode == 65365)
-    {
-        if (fractol->max_iter < 500)
-            fractol->max_iter += 10;
-    }
-    else if (keycode == 65366)
-    {
-        if (fractol->max_iter > 10)
-            fractol->max_iter -= 10;
-    }
-    return 0;
+	if (kcode == 65365)
+	{
+		if (fractol->max_iter < 500)
+			fractol->max_iter += 10;
+	}
+	else if (kcode == 65366)
+	{
+		if (fractol->max_iter > 10)
+			fractol->max_iter -= 10;
+	}
+	return (0);
 }
-
-
-
-
