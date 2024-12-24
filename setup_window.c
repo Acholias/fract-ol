@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 22:38:51 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/23 20:43:02 by lumugot          ###   ########.fr       */
+/*   Updated: 2024/12/24 15:16:10 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,17 @@ int	handle_input(int keycode, t_fractol *fractol)
 	}
 	handle_iteration_change(keycode, fractol);
 	handle_view_and_color_change(keycode, fractol);
-	draw_mandelbrot(fractol);
+	print_fractal(fractol);
 	mlx_put_image_to_window(fractol->mlx, fractol->mlx_win, fractol->img, 0, 0);
 	return (0);
+}
+
+void	put_pixel(t_fractol *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_lenght + x * (data->bits_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
 int	init_window(t_fractol *data)
@@ -59,7 +67,7 @@ int	init_window(t_fractol *data)
 		return (EXIT_FAILURE);
 	}
 	init_fractal(data);
-	draw_mandelbrot(data);
+	print_fractal(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	mlx_mouse_hook(data->mlx_win, handle_mouse, data);
 	mlx_hook(data->mlx_win, 17, 1L << 2, destroy_fractal, data);
@@ -68,21 +76,21 @@ int	init_window(t_fractol *data)
 	return (EXIT_SUCCESS);
 }
 
-void	put_pixel(t_fractol *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_lenght + x * (data->bits_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_fractol	*fractol;
 
+	if (argc < 2)
+	{
+		print_helper();
+		return (0);
+	}
 	fractol = malloc(sizeof(t_fractol));
 	if (!fractol)
 		return (EXIT_FAILURE);
+	select_fractal(fractol, argc, argv);
+	if (!select_fractal(fractol, argc, argv))
+		return (EXIT_FAILURE);
 	init_window(fractol);
-	return (EXIT_SUCCESS);
+	return (0);
 }

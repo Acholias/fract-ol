@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:24:12 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/23 20:56:37 by lumugot          ###   ########.fr       */
+/*   Updated: 2024/12/24 14:20:50 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	handle_view_and_color_change(int k, t_fractol *data)
 		data->current_color++;
 		if (data->current_color > 3)
 			data->current_color = 1;
-		draw_mandelbrot(data);
+		print_fractal(data);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	}
 	if (k == ARROW_LEFT || k == ARROW_RIGHT || k == ARROW_UP || k == ARROW_DOWN)

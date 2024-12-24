@@ -11,8 +11,11 @@ MLX = $(MLX_DIR)/libmlx.a
 SRC = setup_window.c \
 		fractol_tools.c \
 		mandelbrot.c \
+		julia.c \
+		burningship.c \
 		color_set.c \
 		hook.c \
+		choice_fractal.c \
 
 OBJS = $(SRC:.c=.o)
 
