@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 14:20:58 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/24 15:27:19 by lumugot          ###   ########.fr       */
+/*   Updated: 2024/12/24 16:04:11 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,16 @@ int	set_julia(t_complex z, t_complex c, t_fractol *fractol)
 	return (iter);
 }
 
-void draw_julia(t_fractol *data)
+void	draw_julia(t_fractol *data)
 {
 	int			x;
 	int			y;
-	int			iter;
 	int			color;
 	t_complex	z;
 	t_complex	c;
 
 	c.r = data->julia_r;
-	c.i = data->julia_i;	
+	c.i = data->julia_i;
 	y = 0;
 	while (y < data->height)
 	{
@@ -50,8 +49,8 @@ void draw_julia(t_fractol *data)
 		{
 			z.r = data->min_r + x * (data->max_r - data->min_r) / data->width;
 			z.i = data->min_i + y * (data->max_i - data->min_i) / data->height;
-			iter = set_julia(z, c, data);
-			color = get_color(iter, data->max_iter, data);
+			data->iter = set_julia(z, c, data);
+			color = get_color(data->iter, data->max_iter, data);
 			put_pixel(data, x, y, color);
 			x++;
 		}

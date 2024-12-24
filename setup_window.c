@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 22:38:51 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/24 15:16:10 by lumugot          ###   ########.fr       */
+/*   Updated: 2024/12/24 15:45:20 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_fractal(t_fractol *fractol)
 	fractol->max_r = 1.0;
 	fractol->min_i = -1.5;
 	fractol->max_i = 1.5;
+	fractol->iter = 0;
 	fractol->max_iter = MAX_ITER;
 	fractol->current_color = 1;
 	fractol->img = mlx_new_image(fractol->mlx, fractol->width, fractol->height);

@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:00:44 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/24 15:27:10 by lumugot          ###   ########.fr       */
+/*   Updated: 2024/12/24 15:44:38 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_fractol
 	int		endian;
 	int		width;
 	int		height;
+	int		iter;
 	int		max_iter;
 	int		current_color;
 	int		type;

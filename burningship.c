@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:44:44 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/24 14:47:55 by lumugot          ###   ########.fr       */
+/*   Updated: 2024/12/24 15:54:17 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	draw_burningship(t_fractol *data)
 {
 	int			x;
 	int			y;
-	int			iter;
 	int			color;
 	t_complex	z;
 
@@ -56,8 +55,8 @@ void	draw_burningship(t_fractol *data)
 		{
 			z.r = data->min_r + x * (data->max_r - data->min_r) / data->width;
 			z.i = data->min_i + y * (data->max_i - data->min_i) / data->height;
-			iter = set_burningship(z, data);
-			color = get_color(iter, data->max_iter, data);
+			data->iter = set_burningship(z, data);
+			color = get_color(data->iter, data->max_iter, data);
 			put_pixel(data, x, y, color);
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:42:38 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/23 20:37:49 by lumugot          ###   ########.fr       */
+/*   Updated: 2024/12/24 15:53:14 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	draw_mandelbrot(t_fractol *data)
 {
 	int			x;
 	int			y;
-	int			iter;
 	int			color;
 	t_complex	z;
 
@@ -49,8 +48,8 @@ void	draw_mandelbrot(t_fractol *data)
 		{
 			z.r = data->min_r + x * (data->max_r - data->min_r) / data->width;
 			z.i = data->min_i + y * (data->max_i - data->min_i) / data->height;
-			iter = set_mandelbrot(z, data);
-			color = get_color(iter, data->max_iter, data);
+			data->iter = set_mandelbrot(z, data);
+			color = get_color(data->iter, data->max_iter, data);
 			put_pixel(data, x, y, color);
 			x++;
 		}
