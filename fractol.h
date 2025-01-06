@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:00:44 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/06 21:13:32 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/06 23:45:19 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define MAX_ITER 70
 
 # define SPACE 32
+# define ENTER 65293
 # define ESC 65307
 
 # define INCREASE_RENDER 65365
@@ -49,6 +50,7 @@ typedef struct s_fractol
 	int		max_iter;
 	int		current_color;
 	int		type;
+	int		follow_mouse;
 	double	julia_r;
 	double	julia_i;
 	double	min_i;
@@ -79,6 +81,10 @@ int		palette_forest(int iter, int max_iter);
 int		palette_ocean(int iter, int max_iter);
 int		palette_autumn(int iter, int max_iter);
 int		palette_nebula(int iter, int max_iter);
+
+int		mouse_moove_julia(int x, int y, t_fractol *data);
+int		julia_moove(t_fractol *f);
+
 int		select_fractal(t_fractol *fractol, int argc, char **argv);
 void	print_fractal(t_fractol *fractol);
 void	init_fractal(t_fractol *fractol);

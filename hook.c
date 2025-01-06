@@ -6,11 +6,22 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:24:12 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/06 21:00:22 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/06 23:46:58 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	mouse_moove_julia(int x, int y, t_fractol *f)
+{
+	if (x < 0 || x >= f->width || y < 0 || y >= f->height)
+		return (0);
+	f->julia_r = f->min_r + (double)x * (f->max_r - f->min_r) / f->width;
+	f->julia_i = f->min_i + (double)y * (f->max_i - f->min_i) / f->height;
+	print_fractal(f);
+	mlx_put_image_to_window(f->mlx, f->mlx_win, f->img, 0, 0);
+	return (0);
+}
 
 void	move_view_in_direction(t_fractol *pos, double m_r, double m_i, int k)
 {
@@ -58,6 +69,8 @@ int	handle_view_and_color_change(int k, t_fractol *data)
 		print_fractal(data);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	}
+	if (k == ENTER)
+		data->follow_mouse = !data->follow_mouse;
 	if (k == ARROW_LEFT || k == ARROW_RIGHT || k == ARROW_UP || k == ARROW_DOWN)
 		moove_view(k, data);
 	return (0);

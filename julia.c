@@ -6,11 +6,24 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 14:20:58 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/06 17:22:04 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/06 23:48:06 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	julia_moove(t_fractol *f)
+{
+	int	x;
+	int	y;
+
+	if (f->follow_mouse)
+	{
+		mlx_mouse_get_pos(f->mlx, f->mlx_win, &x, &y);
+		mouse_moove_julia(x, y, f);
+	}
+	return (0);
+}
 
 int	set_julia(t_complex z, t_complex c, t_fractol *fractol)
 {

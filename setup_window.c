@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 22:38:51 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/27 18:18:22 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/06 23:36:35 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_fractal(t_fractol *fractol)
 	fractol->min_i = -1.5;
 	fractol->max_i = 1.5;
 	fractol->iter = 0;
+	fractol->follow_mouse = 0;
 	fractol->max_iter = MAX_ITER;
 	fractol->current_color = 1;
 	fractol->img = mlx_new_image(fractol->mlx, fractol->width, fractol->height);
@@ -73,6 +74,7 @@ int	init_window(t_fractol *data)
 	mlx_mouse_hook(data->mlx_win, handle_mouse, data);
 	mlx_hook(data->mlx_win, 17, 1L << 2, destroy_fractal, data);
 	mlx_key_hook(data->mlx_win, handle_input, data);
+	mlx_loop_hook(data->mlx, julia_moove, data);
 	mlx_loop(data->mlx);
 	return (EXIT_SUCCESS);
 }

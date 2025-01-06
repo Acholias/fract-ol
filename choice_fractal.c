@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 11:23:25 by lumugot           #+#    #+#             */
-/*   Updated: 2024/12/24 23:47:47 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/06 23:23:45 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@ void	print_helper(void)
 {
 	ft_putstr_fd("Arguments Inavlids !\n", 2);
 	ft_putstr_fd("Try with right arguments :\n\n", 2);
-	ft_putstr_fd(" ./fractol <mandelbrot>\n\n", 2);
-	ft_putstr_fd(" ./fractol <julia> <value1> <value2>\n", 2);
-	ft_putstr_fd(" For julia try with this: \n", 2);
-	ft_putstr_fd("- Example 1: <value> <value> \n", 2);
-	ft_putstr_fd("- Example 2: <value> <value> \n", 2);
-	ft_putstr_fd("- Example 3: <value> <value> \n\n", 2);
+	ft_putstr_fd(" ./fractol <mandelbrot>\n", 2);
+	ft_putstr_fd(" ./fractol <julia> <float> <float>\n", 2);
+	ft_putstr_fd("For more experience press <ENTER> in julia", 1);
 	ft_putstr_fd(" ./fractol <burningship>\n", 2);
 }
 
@@ -38,15 +35,15 @@ void	print_fractal(t_fractol *fractol)
 int	select_fractal(t_fractol *fractol, int argc, char **argv)
 {
 	fractol->type = 0;
-	if (ft_strncmp(argv[1], "mandelbrot", 10) == 0 && argc == 2)
+	if (ft_strncmp(argv[1], "mandelbrot", 11) == 0 && argc == 2)
 		fractol->type = 1;
-	else if (ft_strncmp(argv[1], "julia", 5) == 0 && argc == 4)
+	else if (ft_strncmp(argv[1], "julia", 6) == 0 && argc == 4)
 	{
 		fractol->type = 2;
 		fractol->julia_r = ft_atof(argv[2]);
 		fractol->julia_i = ft_atof(argv[3]);
 	}
-	else if (ft_strncmp(argv[1], "burningship", 11) == 0 && argc == 2)
+	else if (ft_strncmp(argv[1], "burningship", 12) == 0 && argc == 2)
 		fractol->type = 3;
 	else
 	{
