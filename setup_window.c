@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 22:38:51 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/06 23:36:35 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/07 13:52:57 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	handle_input(int keycode, t_fractol *fractol)
 	handle_iteration_change(keycode, fractol);
 	handle_view_and_color_change(keycode, fractol);
 	print_fractal(fractol);
+	mlx_clear_window(fractol->mlx, fractol->mlx_win);
 	mlx_put_image_to_window(fractol->mlx, fractol->mlx_win, fractol->img, 0, 0);
 	return (0);
 }

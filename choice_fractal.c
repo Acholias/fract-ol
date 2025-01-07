@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 11:23:25 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/06 23:23:45 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/07 10:44:37 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_helper(void)
 	ft_putstr_fd("Try with right arguments :\n\n", 2);
 	ft_putstr_fd(" ./fractol <mandelbrot>\n", 2);
 	ft_putstr_fd(" ./fractol <julia> <float> <float>\n", 2);
-	ft_putstr_fd("For more experience press <ENTER> in julia", 1);
+	ft_putstr_fd("For more experience press <SPACE> in julia", 1);
 	ft_putstr_fd(" ./fractol <burningship>\n", 2);
 }
 

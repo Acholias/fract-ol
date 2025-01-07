@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:00:44 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/06 23:45:19 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/07 13:52:58 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # define MAX_ITER 70
 
 # define SPACE 32
-# define ENTER 65293
+# define F1 65470
+# define F2 65471
 # define ESC 65307
 
 # define INCREASE_RENDER 65365

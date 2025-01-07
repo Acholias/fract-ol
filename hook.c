@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:24:12 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/06 23:46:58 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/07 11:09:22 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	mouse_moove_julia(int x, int y, t_fractol *f)
 	f->julia_r = f->min_r + (double)x * (f->max_r - f->min_r) / f->width;
 	f->julia_i = f->min_i + (double)y * (f->max_i - f->min_i) / f->height;
 	print_fractal(f);
+	mlx_clear_window(f->mlx, f->mlx_win);
 	mlx_put_image_to_window(f->mlx, f->mlx_win, f->img, 0, 0);
 	return (0);
 }
@@ -56,20 +57,31 @@ void	moove_view(int kcode, t_fractol *fractol)
 	m_i = (fractol->max_i - fractol->min_i) * 0.05;
 	move_view_in_direction(fractol, m_r, m_i, kcode);
 	print_fractal(fractol);
+	mlx_clear_window(fractol->mlx, fractol->mlx_win);
 	mlx_put_image_to_window(fractol->mlx, fractol->mlx_win, fractol->img, 0, 0);
 }
 
 int	handle_view_and_color_change(int k, t_fractol *data)
 {
-	if (k == SPACE)
+	if (k == F2)
 	{
 		data->current_color++;
 		if (data->current_color > 9)
 			data->current_color = 1;
 		print_fractal(data);
+		mlx_clear_window(data->mlx, data->mlx_win);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	}
-	if (k == ENTER)
+	else if (k == F1)
+	{
+		data->current_color--;
+		if (data->current_color < 1)
+			data->current_color = 9;
+		print_fractal(data);
+		mlx_clear_window(data->mlx, data->mlx_win);
+		mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	}
+	if (k == SPACE)
 		data->follow_mouse = !data->follow_mouse;
 	if (k == ARROW_LEFT || k == ARROW_RIGHT || k == ARROW_UP || k == ARROW_DOWN)
 		moove_view(k, data);
