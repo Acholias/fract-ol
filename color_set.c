@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 17:21:05 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/06 21:10:33 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/08 21:23:32 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,26 +86,20 @@ int	palette_nebula(int iter, int max_iter)
 
 int	get_color(int iter, int max_iter, t_fractol *data)
 {
+	const t_palette_func	palettes[PALETTE_MAX] = {
+		palette_galaxy,
+		palette_tropical,
+		palette_inferno,
+		palette_aurora_borealis,
+		palette_sunset,
+		palette_forest,
+		palette_ocean,
+		palette_autumn,
+		palette_nebula
+	};
+
 	if (iter == max_iter)
 		return (0x000000);
-	if (data->current_color == 1)
-		return (palette_galaxy(iter, max_iter));
-	else if (data->current_color == 2)
-		return (palette_tropical(iter, max_iter));
-	else if (data->current_color == 3)
-		return (palette_inferno(iter, max_iter));
-	else if (data->current_color == 4)
-		return (palette_aurora_borealis(iter, max_iter));
-	else if (data->current_color == 5)
-		return (palette_sunset(iter, max_iter));
-	else if (data->current_color == 6)
-		return (palette_forest(iter, max_iter));
-	else if (data->current_color == 7)
-		return (palette_ocean(iter, max_iter));
-	else if (data->current_color == 8)
-		return (palette_autumn(iter, max_iter));
-	else if (data->current_color == 9)
-		return (palette_nebula(iter, max_iter));
-	get_color(iter, max_iter, data);
-	return (0);
+	iter = (iter + data->flow) % 80;
+	return (palettes[data->current_color](iter, 70));
 }

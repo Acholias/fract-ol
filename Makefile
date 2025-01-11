@@ -6,7 +6,7 @@
 #    By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/07 10:50:13 by lumugot           #+#    #+#              #
-#    Updated: 2025/01/07 12:01:43 by lumugot          ###   ########.fr        #
+#    Updated: 2025/01/10 14:55:20 by lumugot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,19 +52,21 @@ MAKEFLAGS += -s --no-print-directory
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
-	$(CC) $(OBJS) $(LIBFT) $(MLX) $(MLX_FLG) -o $(NAME)
+	$(CC) $(OBJS) $(LIBFT) $(MLX) -I$(LIBFT_DIR) $(MLX_FLG) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
-	@echo "$(BOLD)$(YELLOW)Building Libft ...$(RESET)"
-	sleep 1;
-	@echo "$(BOLD)$(GREEN)Libft is ready ✅$(RESET)"
 
 $(MLX):
 	$(MAKE) -C $(MLX_DIR)
+	@clear
+	@echo "$(BOLD)$(YELLOW)Building Libft ...$(RESET)"
+	sleep 1;
+	@echo "$(BOLD)$(GREEN)Libft is ready ✅$(RESET)"
+	sleep 1;
 	@echo "$(BOLD)$(YELLOW)Building MLX ...$(RESET)"
 	sleep 1;
 	@echo "$(BOLD)$(GREEN)MLX is ready ✅$(RESET)"
@@ -72,17 +74,22 @@ $(MLX):
 	@echo "$$BANNER"
 	sleep 1;
 	@echo "$(BOLD)$(MAGENTA)Here are the commands:$(RESET)"
+	@ echo ' '
 	@echo "$(BOLD)$(CYAN)✵ <F1 or F2> To change the color palettes$(RESET)"
 	@echo "$(BOLD)$(CYAN)✵ <ESCAPE> To close the window$(RESET)"
 	@echo "$(BOLD)$(CYAN)✵ <ARROWS> To move (up, down, left, right)$(RESET)"
 	@echo "$(BOLD)$(CYAN)✵ <PgUp> To increase the number of iterations$(RESET)"
 	@echo "$(BOLD)$(CYAN)✵ <PgDn> To decrease the number of iterations$(RESET)"
 	@echo "$(BOLD)$(CYAN)✵ <SPACE> To move the Julia sets with the mouse$(RESET)"
+	@echo "$(BOLD)$(CYAN)✵ <SHIFT_L> To use Crazy color mod$(RESET)"
 	
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(MLX_DIR) clean
 	rm -f $(OBJS)
+	@clear
+	@echo "$$BANNER"
+	@echo ' '
 	@echo "$(BOLD)$(RED)❄ Remove all $(OBJS)$(RESET)"
 
 fclean: clean
@@ -96,14 +103,15 @@ re: fclean all
 
 define BANNER
 
-\033[38;5;196m░▒▓████████▓▒░▒▓███████▓▒░ ░▒▓██████▓▒░ ░▒▓██████▓▒░▒▓████████▓▒░▒▓██████▓▒░░▒▓█▓▒░       
-\033[38;5;202m░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░       
-\033[38;5;208m░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░       
-\033[38;5;214m░▒▓██████▓▒░ ░▒▓███████▓▒░░▒▓████████▓▒░▒▓█▓▒░        ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░       
-\033[38;5;220m░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░       
-\033[38;5;226m░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░       
-\033[38;5;190m░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░  ░▒▓█▓▒░   ░▒▓██████▓▒░░▒▓████████▓▒░
+\033[38;5;17m░▒▓████████▓▒░▒▓███████▓▒░ ░▒▓██████▓▒░ ░▒▓██████▓▒░▒▓████████▓▒░▒▓██████▓▒░░▒▓█▓▒░       
+\033[38;5;33m░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░       
+\033[38;5;39m░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░       
+\033[38;5;57m░▒▓██████▓▒░ ░▒▓███████▓▒░░▒▓████████▓▒░▒▓█▓▒░        ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░       
+\033[38;5;93m░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░       
+\033[38;5;165m░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░       
+\033[38;5;15m░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░  ░▒▓█▓▒░   ░▒▓██████▓▒░░▒▓████████▓▒░
 \033[0m
+
 
 endef
 export BANNER

@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 11:23:25 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/07 10:44:37 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/08 21:20:46 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,31 @@
 
 void	print_helper(void)
 {
-	ft_putstr_fd("Arguments Inavlids !\n", 2);
-	ft_putstr_fd("Try with right arguments :\n\n", 2);
-	ft_putstr_fd(" ./fractol <mandelbrot>\n", 2);
-	ft_putstr_fd(" ./fractol <julia> <float> <float>\n", 2);
-	ft_putstr_fd("For more experience press <SPACE> in julia", 1);
-	ft_putstr_fd(" ./fractol <burningship>\n", 2);
+	ft_putstr_fd("\033[38;5;34m  Arguments Inavlids !\033[00m\n", 2);
+	ft_putstr_fd("\033[38;5;40m  Try with right arguments :\033[00m\n\n", 2);
+	ft_putstr_fd("\033[38;5;46m ./fractol <mandelbrot>\033[00m\n", 2);
+	ft_putstr_fd("\033[38;5;43m ./fractol <julia> <float> <float> \
+		\033[00m\n", 2);
+	ft_putstr_fd("\033[38;5;44m For more experience press <SPACE> in julia \
+		\033[00m\n", 1);
+	ft_putstr_fd("\033[38;5;48m ./fractol <burningship>\n\033[00m", 2);
 }
 
-void	print_fractal(t_fractol *fractol)
+int	print_fractal(t_fractol *fractol)
 {
 	if (fractol->type == 1)
 		draw_mandelbrot(fractol);
 	else if (fractol->type == 2)
+	{
 		draw_julia(fractol);
+		julia_moove(fractol);
+	}
 	else if (fractol->type == 3)
 		draw_burningship(fractol);
+	if (fractol->animate)
+		fractol->flow = (fractol->flow + 1) % MAX_ITER;
+	mlx_put_image_to_window(fractol->mlx, fractol->mlx_win, fractol->img, 0, 0);
+	return (1);
 }
 
 int	select_fractal(t_fractol *fractol, int argc, char **argv)

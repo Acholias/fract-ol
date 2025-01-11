@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 22:55:11 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/07 13:52:56 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/08 20:07:01 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,5 @@ void	zoom(int x, int y, t_fractol *fractol, double zoom_f)
 	fractol->max_r = mouse_r + (fractol->max_r - mouse_r) * zoom_f;
 	fractol->min_i = mouse_i - (mouse_i - fractol->min_i) * zoom_f;
 	fractol->max_i = mouse_i + (fractol->max_i - mouse_i) * zoom_f;
-	print_fractal(fractol);
 	mlx_put_image_to_window(fractol->mlx, fractol->mlx_win, fractol->img, 0, 0);
 }

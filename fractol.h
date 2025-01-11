@@ -6,27 +6,29 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:00:44 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/07 13:52:58 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/10 14:49:16 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "Libft/libft.h"
-# include "minilibx-linux/mlx.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# include <libft.h>
+# include "minilibx-linux/mlx.h"
+
+# define WIDTH 800
+# define HEIGHT 800
 # define MAX_ITER 70
 
 # define SPACE 32
 # define F1 65470
 # define F2 65471
 # define ESC 65307
+# define SHIFT_L 65505
 
 # define INCREASE_RENDER 65365
 # define DECREASE_RENDER 65366
@@ -35,6 +37,10 @@
 # define ARROW_RIGHT 65363
 # define ARROW_UP 65362
 # define ARROW_DOWN 65364
+
+# define PALETTE_MAX 9
+
+typedef int	(*t_palette_func)(int, int);
 
 typedef struct s_fractol
 {
@@ -52,6 +58,8 @@ typedef struct s_fractol
 	int		current_color;
 	int		type;
 	int		follow_mouse;
+	int		flow;
+	int		animate;
 	double	julia_r;
 	double	julia_i;
 	double	min_i;
@@ -87,7 +95,7 @@ int		mouse_moove_julia(int x, int y, t_fractol *data);
 int		julia_moove(t_fractol *f);
 
 int		select_fractal(t_fractol *fractol, int argc, char **argv);
-void	print_fractal(t_fractol *fractol);
+int		print_fractal(t_fractol *fractol);
 void	init_fractal(t_fractol *fractol);
 int		handle_input(int keycode, t_fractol *fractol);
 int		handle_view_and_color_change(int keycode, t_fractol *fractol);

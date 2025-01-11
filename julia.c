@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 14:20:58 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/06 23:48:06 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/01/08 17:20:35 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	set_julia(t_complex z, t_complex c, t_fractol *fractol)
 	t_complex	temp;
 
 	iter = 0;
-	while (iter < fractol->max_iter)
+	while (iter <= fractol->max_iter)
 	{
 		if ((z.r * z.r + z.i * z.i) > 4)
 			break ;
