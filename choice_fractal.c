@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 11:23:25 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/08 21:20:46 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/03/13 01:30:29 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,17 @@ int	select_fractal(t_fractol *fractol, int argc, char **argv)
 		fractol->type = 1;
 	else if (ft_strncmp(argv[1], "julia", 6) == 0 && argc == 4)
 	{
-		fractol->type = 2;
-		fractol->julia_r = ft_atof(argv[2]);
-		fractol->julia_i = ft_atof(argv[3]);
+		if (ft_isdigit(*argv[2]) && ft_isdigit(*argv[3]))
+		{
+			fractol->type = 2;
+			fractol->julia_r = ft_atof(argv[2]);
+			fractol->julia_i = ft_atof(argv[3]);
+		}
+		else
+		{
+			print_helper();
+			exit(EXIT_FAILURE);
+		}
 	}
 	else if (ft_strncmp(argv[1], "burningship", 12) == 0 && argc == 2)
 		fractol->type = 3;
