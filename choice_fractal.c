@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 11:23:25 by lumugot           #+#    #+#             */
-/*   Updated: 2025/03/13 01:30:29 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/03/13 01:33:17 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	print_helper(void)
 	ft_putstr_fd("\033[38;5;44m For more experience press <SPACE> in julia \
 		\033[00m\n", 1);
 	ft_putstr_fd("\033[38;5;48m ./fractol <burningship>\n\033[00m", 2);
+	exit(EXIT_FAILURE);
 }
 
 int	print_fractal(t_fractol *fractol)
@@ -55,17 +56,11 @@ int	select_fractal(t_fractol *fractol, int argc, char **argv)
 			fractol->julia_i = ft_atof(argv[3]);
 		}
 		else
-		{
 			print_helper();
-			exit(EXIT_FAILURE);
-		}
 	}
 	else if (ft_strncmp(argv[1], "burningship", 12) == 0 && argc == 2)
 		fractol->type = 3;
 	else
-	{
 		print_helper();
-		exit(EXIT_FAILURE);
-	}
 	return (1);
 }
