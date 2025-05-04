@@ -6,7 +6,7 @@
 #    By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/07 10:50:13 by lumugot           #+#    #+#              #
-#    Updated: 2025/01/10 14:55:20 by lumugot          ###   ########.fr        #
+#    Updated: 2025/04/11 01:21:41 by lumugot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,15 +31,15 @@ MLX_DIR = ./minilibx-linux
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX = $(MLX_DIR)/libmlx.a
 
-SRC = setup_window.c \
-		fractol_tools.c \
-		mandelbrot.c \
-		julia.c \
-		burningship.c \
-		color_set.c \
-		color_set_bis.c \
-		hook.c \
-		choice_fractal.c \
+SRC = src/setup_window.c \
+		src/fractol_tools.c \
+		src/color_set.c \
+		src/color_set_bis.c \
+		src/hook.c \
+		src/choice_fractal.c \
+		fractal/mandelbrot.c \
+		fractal/julia.c \
+		fractal/burningship.c \
 
 OBJS = $(SRC:.c=.o)
 

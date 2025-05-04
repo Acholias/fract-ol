@@ -6,11 +6,11 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:24:12 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/08 21:27:23 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/04/11 01:20:27 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
 int	mouse_moove_julia(int x, int y, t_fractol *f)
 {

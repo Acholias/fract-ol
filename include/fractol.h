@@ -6,7 +6,7 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:00:44 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/10 14:49:16 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/04/11 01:52:04 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <math.h>
 
 # include <libft.h>
-# include "minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 
 # define WIDTH 800
 # define HEIGHT 800
@@ -81,41 +81,55 @@ typedef struct s_color
 	double	b;
 }	t_color;
 
+//color_set.c
+int		palette_forest(int iter, int max_iter);
+int		palette_ocean(int iter, int max_iter);
+int		palette_autumn(int iter, int max_iter);
+int		palette_nebula(int iter, int max_iter);
+int		get_color(int iter, int max_iter, t_fractol *data);
+
+//color_set_bis.c
 int		palette_galaxy(int iter, int max_iter);
 int		palette_tropical(int iter, int max_iter);
 int		palette_inferno(int iter, int max_iter);
 int		palette_aurora_borealis(int iter, int max_iter);
 int		palette_sunset(int iter, int max_iter);
-int		palette_forest(int iter, int max_iter);
-int		palette_ocean(int iter, int max_iter);
-int		palette_autumn(int iter, int max_iter);
-int		palette_nebula(int iter, int max_iter);
 
-int		mouse_moove_julia(int x, int y, t_fractol *data);
-int		julia_moove(t_fractol *f);
-
-int		select_fractal(t_fractol *fractol, int argc, char **argv);
-int		print_fractal(t_fractol *fractol);
-void	init_fractal(t_fractol *fractol);
-int		handle_input(int keycode, t_fractol *fractol);
-int		handle_view_and_color_change(int keycode, t_fractol *fractol);
-int		init_window(t_fractol *fractol);
-void	put_pixel(t_fractol *data, int x, int y, int color);
+//mandelbrot.c
 int		set_mandelbrot(t_complex z, t_fractol *fractol);
 void	draw_mandelbrot(t_fractol *fractol);
+
+//julia.c
+int		julia_moove(t_fractol *f);
 int		set_julia(t_complex z, t_complex c, t_fractol *fractol);
 void	draw_julia(t_fractol *fractol);
+
+//burningship.c
 double	my_abs(double a);
 int		set_burningship(t_complex z, t_fractol *fractol);
 void	draw_burningship(t_fractol *data);
-int		get_color(int iter, int max_iter, t_fractol *data);
-int		handle_iteration_change(int keycode, t_fractol *fractol);
-void	move_view_in_direction(t_fractol *pos, double m_r, double m_i, int k);
-void	moove_view(int keycode, t_fractol *fractol);
+
+//choice_fractal.c
+void	print_helper(void);
+int		select_fractal(t_fractol *fractol, int argc, char **argv);
+int		print_fractal(t_fractol *fractol);
+
+//fractol_tools.c
 int		destroy_fractal(t_fractol *fractol);
 int		handle_mouse(int button, int x, int y, t_fractol *fractol);
 void	zoom(int x, int y, t_fractol *fractol, double zoom_factor);
 
-void	print_helper(void);
+//hook.c
+int		mouse_moove_julia(int x, int y, t_fractol *data);
+void	move_view_in_direction(t_fractol *pos, double m_r, double m_i, int k);
+void	moove_view(int keycode, t_fractol *fractol);
+int		handle_view_and_color_change(int keycode, t_fractol *fractol);
+int		handle_iteration_change(int keycode, t_fractol *fractol);
+
+//setup_window.c
+void	init_fractal(t_fractol *fractol);
+int		handle_input(int keycode, t_fractol *fractol);
+void	put_pixel(t_fractol *data, int x, int y, int color);
+int		init_window(t_fractol *fractol);
 
 #endif

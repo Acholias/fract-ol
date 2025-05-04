@@ -6,11 +6,11 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 22:38:51 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/10 14:49:34 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/04/11 01:20:32 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
 void	init_fractal(t_fractol *fractol)
 {

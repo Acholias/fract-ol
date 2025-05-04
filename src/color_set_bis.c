@@ -6,11 +6,11 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 20:58:31 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/06 21:12:09 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/04/11 01:20:13 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
 int	palette_galaxy(int iter, int max_iter)
 {

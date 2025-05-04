@@ -6,11 +6,11 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 11:23:25 by lumugot           #+#    #+#             */
-/*   Updated: 2025/03/13 01:33:17 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/04/11 01:59:56 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
 void	print_helper(void)
 {
@@ -23,23 +23,6 @@ void	print_helper(void)
 		\033[00m\n", 1);
 	ft_putstr_fd("\033[38;5;48m ./fractol <burningship>\n\033[00m", 2);
 	exit(EXIT_FAILURE);
-}
-
-int	print_fractal(t_fractol *fractol)
-{
-	if (fractol->type == 1)
-		draw_mandelbrot(fractol);
-	else if (fractol->type == 2)
-	{
-		draw_julia(fractol);
-		julia_moove(fractol);
-	}
-	else if (fractol->type == 3)
-		draw_burningship(fractol);
-	if (fractol->animate)
-		fractol->flow = (fractol->flow + 1) % MAX_ITER;
-	mlx_put_image_to_window(fractol->mlx, fractol->mlx_win, fractol->img, 0, 0);
-	return (1);
 }
 
 int	select_fractal(t_fractol *fractol, int argc, char **argv)
@@ -62,5 +45,22 @@ int	select_fractal(t_fractol *fractol, int argc, char **argv)
 		fractol->type = 3;
 	else
 		print_helper();
+	return (1);
+}
+
+int	print_fractal(t_fractol *fractol)
+{
+	if (fractol->type == 1)
+		draw_mandelbrot(fractol);
+	else if (fractol->type == 2)
+	{
+		draw_julia(fractol);
+		julia_moove(fractol);
+	}
+	else if (fractol->type == 3)
+		draw_burningship(fractol);
+	if (fractol->animate)
+		fractol->flow = (fractol->flow + 1) % MAX_ITER;
+	mlx_put_image_to_window(fractol->mlx, fractol->mlx_win, fractol->img, 0, 0);
 	return (1);
 }

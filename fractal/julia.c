@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   burningship.c                                      :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 13:44:44 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/06 17:21:26 by lumugot          ###   ########.fr       */
+/*   Created: 2024/12/24 14:20:58 by lumugot           #+#    #+#             */
+/*   Updated: 2025/04/11 01:20:11 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
-double	my_abs(double a)
+int	julia_moove(t_fractol *f)
 {
-	if (a < 0)
-		return (-a);
-	return (a);
+	int	x;
+	int	y;
+
+	if (f->follow_mouse)
+	{
+		mlx_mouse_get_pos(f->mlx, f->mlx_win, &x, &y);
+		mouse_moove_julia(x, y, f);
+	}
+	return (0);
 }
 
-int	set_burningship(t_complex z, t_fractol *fractol)
+int	set_julia(t_complex z, t_complex c, t_fractol *fractol)
 {
 	int			iter;
-	t_complex	c;
 	t_complex	temp;
 
-	c = z;
 	iter = 0;
-	while (iter < fractol->max_iter)
+	while (iter <= fractol->max_iter)
 	{
 		if ((z.r * z.r + z.i * z.i) > 4)
 			break ;
 		temp.r = z.r * z.r - z.i * z.i + c.r;
-		temp.i = 2 * my_abs(z.r * z.i) + c.i;
+		temp.i = 2 * z.r * z.i + c.i;
 		z.r = temp.r;
 		z.i = temp.i;
 		iter++;
@@ -40,13 +44,16 @@ int	set_burningship(t_complex z, t_fractol *fractol)
 	return (iter);
 }
 
-void	draw_burningship(t_fractol *data)
+void	draw_julia(t_fractol *data)
 {
 	int			x;
 	int			y;
 	int			color;
 	t_complex	z;
+	t_complex	c;
 
+	c.r = data->julia_r;
+	c.i = data->julia_i;
 	y = 0;
 	while (y < data->height)
 	{
@@ -55,7 +62,7 @@ void	draw_burningship(t_fractol *data)
 		{
 			z.r = data->min_r + x * (data->max_r - data->min_r) / data->width;
 			z.i = data->min_i + y * (data->max_i - data->min_i) / data->height;
-			data->iter = set_burningship(z, data);
+			data->iter = set_julia(z, c, data);
 			color = get_color(data->iter, data->max_iter, data);
 			put_pixel(data, x, y, color);
 			x++;

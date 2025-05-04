@@ -6,11 +6,11 @@
 /*   By: lumugot <lumugot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 17:21:05 by lumugot           #+#    #+#             */
-/*   Updated: 2025/01/08 21:23:32 by lumugot          ###   ########.fr       */
+/*   Updated: 2025/04/11 01:54:29 by lumugot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
 int	palette_forest(int iter, int max_iter)
 {
